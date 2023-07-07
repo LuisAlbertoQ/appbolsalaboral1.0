@@ -353,7 +353,7 @@ router.post('/oferta_laboral-add', function (req, res, next) {
 
 // Cambiar a añadir postulacion
 router.get('/postulacion-add', function (req, res, next) {
-  dbConn.query('SELECT u.usu_nombre_razon_social,e.eg_id,ol.ol_titulo,ol.ol_id FROM oferta_laboral ol,egresado e, usuario u WHERE u.usu_id=e.eg_usu_id', function (err, rows) {
+  dbConn.query('SELECT * FROM postulacion WHERE pc_id ', function (err, rows) {
 
     if (err) {
       req.flash('error', err);
@@ -366,21 +366,21 @@ router.get('/postulacion-add', function (req, res, next) {
 // Añadir postulacion
 router.post('/postulacion-add', function (req, res, next) {
 
-  let ol_id = req.body.ol_id;
+  let id = req.body.id;
+  let titulo = req.body.titulo;
   let fecha = req.body.fecha;
   let id_egresado = req.body.id_egresado;
-  let numero = req.body.numero;
+  let postulante = req.body.postulante;
   let ganador = req.body.ganador;
 
+
   var form_data = {
-    usu_nombre_razon_social: nombre,
-    usu_dni_ruc: dni,
-    usu_correo: correo,
-    usu_celular: celular,
-    usu_direccion: direccion,
-    usu_rol: rol,
-    usu_usuario: usuario,
-    usu_password: password
+    pc_id: id,
+    pc_ol_id: titulo,
+    pc_fecha_postulante: fecha,
+    pc_eg_id: id_egresado,
+    pc_nro_postulacion: postulante,
+    pc_ganador: ganador
   }
 
   dbConn.query('INSERT INTO postulacion SET ?', form_data, function (err, result) {
@@ -844,9 +844,10 @@ router.get('/postulacion-edit/(:id)', function (req, res, next) {
         id: rows[0].pc_id,
         titulo: rows[0].pc_ol_id,
         fecha: rows[0].pc_fecha_postulacion,
-        egresado: rows[0].pc_eg_id,
-        postulate: rows[0].pc_nro_postulacion,
+        id_egresado: rows[0].pc_eg_id,
+        postulante: rows[0].pc_nro_postulacion,
         ganador: rows[0].pc_ganador,
+
       })
     }
   })
@@ -856,7 +857,7 @@ router.post('/postulacion-edit/:id', function (req, res, next) {
   let id = req.params.id;
   let titulo = req.body.titulo;
   let fecha = req.body.fecha;
-  let egresado = req.body.egresado;
+  let id_egresado = req.body.id_egresado;
   let postulante = req.body.postulante;
   let ganador = req.body.ganador;
 
@@ -864,7 +865,7 @@ router.post('/postulacion-edit/:id', function (req, res, next) {
     pc_id: id,
     pc_ol_id: titulo,
     pc_fecha_postulacion: fecha,
-    pc_eg_id: egresado,
+    pc_eg_id: id_egresado,
     pc_nro_postulacion: postulante,
     pc_ganador: ganador
 

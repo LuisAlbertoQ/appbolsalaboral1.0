@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bolsa Laboral | Editar postulacion</title>
+  <title>Bolsa Laboral | Editar Monitoreo</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -195,12 +195,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Editar postulacion</h1>
+            <h1>Editar Postulacion</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Editar postulacion</li>
+              <li class="breadcrumb-item active">Editar Postulacion</li>
             </ol>
           </div>
         </div>
@@ -223,40 +223,38 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="id">id</label>
-                        <input value="<%= id %>" type="" class="form-control" name="id" id="id" placeholder="963254178" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="titulo">titulo</label>
-                        <input value="<%= titulo %>" type="text" class="form-control" name="titulo" id="titulo" placeholder="963254178" required>
+                        <label for="titulo">Titulo</label>
+                        <input value="<%= titulo %>" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required>
                     </div>
 
                     <div class="form-group">
                         <label for="fecha">Fecha</label>
-                        <input value="<%= fecha %>" type="date" class="form-control" name="fecha" id="fecha" placeholder="963254178" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="egresado">egresado</label>
-                        <input value="<%= egresado %>" type="text" class="form-control" name="egresado" id="egresado" placeholder="Ssitemas de venta" required>
+                        <input value="<%= fecha %>" type="date" class="form-control" name="fecha" id="fecha" placeholder="" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="postulante">postulante</label>
-                        <input value="<%= postulante %>" type="text" class="form-control" name="postulante" id="postulante" placeholder="Buscamos gente con experiencia" required>
-                    </div>
-
-                      <select value="<%= ganador %>" class="form-control" name="ganador">
+                      <label class="form-label">Egresado</label>
+                      <select value="<%= id_egresado %>" class="form-control" name="id_egresado">
                         <% for(var i = 0; i< data.length; i++) { %>
-                          <option value='<%= data[i].pc_id%>'><%= data[i].ganador%></option>
+                          <option value='<%= data[i].pc_id%>'><%= data[i].usu_nombre_razon_social%></option>
                         <% } %>
                       </select>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="postulante">Postulante</label>
+                        <input value="<%= postulante %>" type="text" class="form-control" name="postulante" id="postulante" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="ganador">Ganador</label>
+                      <input value="<%= ganador %>" type="text" class="form-control" name="ganador" id="ganador" placeholder="" required>
+                  </div>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Crear Nueva postulacion</button>
+                  <button type="submit" class="btn btn-primary">Editar postulacion</button>
                 </div>
               </form>
             </div>
