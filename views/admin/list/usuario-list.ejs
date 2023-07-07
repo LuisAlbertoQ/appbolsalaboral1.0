@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -284,12 +286,12 @@
             <div class="card">
               <div class="card-header flex justify-between">
                 <div class="text-right">
-                  <a class="btn btn-primary" href="usuario-add">Crear Nuevo Usuario</a>
+                  <a class="btn btn-secondary" href="usuario-add">Crear Nuevo Usuario</a>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
-                <table class="table ">
+                <table class="table table-striped m-auto">
                   <thead>
                     <tr>
                       <th style="width: 10px">N°</th>
@@ -324,8 +326,8 @@
                           <td><%= data[i].usu_usuario%></td>
                           <td><%= data[i].usu_password%></td>
                           <td class="flex">
-                            <a class="btn btn-success" href="../admin/usuario-edit/<%=data[i].usu_id%>">Editar</a>
-                            <a class="btn btn-danger" onclick="return alert('¿Estas seguro de eliminar este registro?')" href="../admin/usuario-del/<%=data[i].usu_id%>">Eliminar</a>
+                            <a class="btn btn-success" href="../admin/usuario-edit/<%=data[i].usu_id%>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-danger" onclick="return alert('¿Estas seguro de eliminar este registro?')" href="../admin/usuario-del/<%=data[i].usu_id%>"><i class="fa-solid fa-trash"></i></a>
                           </td>
                         </tr>
                         <% } %>

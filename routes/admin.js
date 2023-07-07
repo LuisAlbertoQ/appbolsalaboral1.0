@@ -383,12 +383,12 @@ router.post('/postulacion-add', function (req, res, next) {
     usu_password: password
   }
 
-  dbConn.query('INSERT INTO usuario SET ?', form_data, function (err, result) {
+  dbConn.query('INSERT INTO postulacion SET ?', form_data, function (err, result) {
     if (err) {
       req.flash('error', err)
     } else {
       req.flash('success', 'Usuario agregado con exito');
-      res.redirect('../admin/usuario');
+      res.redirect('../admin/postulacion');
     }
   })
 });
@@ -829,27 +829,24 @@ router.post('/oferta_laboral-edit/:id', function (req, res, next) {
 // Editar postulacion
 router.get('/postulacion-edit/(:id)', function (req, res, next) {
   let id = req.params.id;
-  dbConn.query('SELECT * FROM usuario WHERE usu_id = ' + id, function (err, rows, fields) {
+  dbConn.query('SELECT * FROM postulacion WHERE pc_id = ' + id, function (err, rows, fields) {
     if (err) throw err
     // if user not found
     if (rows.length <= 0) {
-      req.flash('error', 'No se encontro el registro con el usu_id = ' + id)
-      res.redirect('/usuario')
+      req.flash('error', 'No se encontro el registro con el pc_id = ' + id)
+      res.redirect('/postulacion')
     }
     // if book found
     else {
       // render to edit.ejs
-      res.render('admin/usuario-edit', {
+      res.render('admin/postulacion-edit', {
         data: rows,
-        id: rows[0].usu_id,
-        nombre: rows[0].usu_nombre_razon_social,
-        dni: rows[0].usu_dni_ruc,
-        correo: rows[0].usu_correo,
-        celular: rows[0].usu_celular,
-        direccion: rows[0].usu_direccion,
-        rol: rows[0].usu_rol,
-        usuario: rows[0].usu_usuario,
-        password: rows[0].usu_password
+        id: rows[0].pc_id,
+        titulo: rows[0].pc_ol_id,
+        fecha: rows[0].pc_fecha_postulacion,
+        egresado: rows[0].pc_eg_id,
+        postulate: rows[0].pc_nro_postulacion,
+        ganador: rows[0].pc_ganador,
       })
     }
   })
@@ -857,32 +854,28 @@ router.get('/postulacion-edit/(:id)', function (req, res, next) {
 // Actualizar postulacion
 router.post('/postulacion-edit/:id', function (req, res, next) {
   let id = req.params.id;
-  let nombre = req.body.nombre;
-  let dni = req.body.dni;
-  let correo = req.body.correo;
-  let celular = req.body.celular;
-  let dirección = req.body.dirección;
-  let rol = req.body.rol;
-  let usuario = req.body.usuario;
-  let password = req.body.password;
+  let titulo = req.body.titulo;
+  let fecha = req.body.fecha;
+  let egresado = req.body.egresado;
+  let postulante = req.body.postulante;
+  let ganador = req.body.ganador;
 
   var form_data = {
-    usu_nombre_razon_social: nombre,
-    usu_dni_ruc: dni,
-    usu_correo: correo,
-    usu_celular: celular,
-    usu_direccion: dirección,
-    usu_rol: rol,
-    usu_usuario: usuario,
-    usu_password: password
+    pc_id: id,
+    pc_ol_id: titulo,
+    pc_fecha_postulacion: fecha,
+    pc_eg_id: egresado,
+    pc_nro_postulacion: postulante,
+    pc_ganador: ganador
+
   }
   // update query
-  dbConn.query('UPDATE usuario SET ? WHERE usu_id = ' + id, form_data, function (err, result) {
+  dbConn.query('UPDATE postulacion SET ? WHERE pc_id = ' + id, form_data, function (err, result) {
     if (err) {
       req.flash('error', err)
     } else {
-      req.flash('success', 'Usuario editado con exito');
-      res.redirect('../../admin/usuario');
+      req.flash('success', 'postulante editado con exito');
+      res.redirect('../../admin/postulacion');
     }
   })
 });
@@ -981,6 +974,19 @@ router.get('/oferta_laboral-del/(:id)', function (req, res, next) {
     } else {
       req.flash('success', 'Oferta Laboral eliminado con exito ID = ' + id)
       res.redirect('../oferta_laboral')
+    }
+  })
+});
+
+router.get('/postulacion-del/(:id)', function (req, res, next) {
+  let id = req.params.id;
+  dbConn.query('DELETE FROM postulacion WHERE pc_id = ' + id, function (err, result) {
+    if (err) {
+      req.flash('error', err)
+      res.redirect('../postulacion')
+    } else {
+      req.flash('success', 'Postulacion eliminado con exito ID = ' + id)
+      res.redirect('../postulacion')
     }
   })
 });

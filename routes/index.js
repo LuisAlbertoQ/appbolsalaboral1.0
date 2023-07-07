@@ -28,9 +28,6 @@ router.get('/oferta', function (req, res, next) {
     }
   });
 });
-router.get('/nosotros', function (req, res, next) {
-      res.render('nosotros');
-});
 router.get('/login', function (req, res, next) {
   res.render('login');
 });
