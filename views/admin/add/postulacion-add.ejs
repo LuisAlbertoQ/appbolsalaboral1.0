@@ -290,39 +290,34 @@
               <form action="postulacion-add" method="POST">
                 <div class="card-body">
 
-                    <div class="form-group">
-                        <label class="form-label">Titulo Oferta Laboral</label>
-                        <select class="form-control" name="ol_id">
-                          <% for(var i = 0; i< data.length; i++) { %>
-                            <option value='<%= data[i].ol_id%>'><%= data[i].ol_titulo%></option>
-                          <% } %>
-                        </select>
-                    </div>
+                  <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input value="<%= titulo %>" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="fecha">Fecha de Postulacion</label>
-                        <input type="date" class="form-control" name="fecha" id="fecha" placeholder="963254178" required>
-                    </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input value="<%= fecha %>" type="date" class="form-control" name="fecha" id="fecha" placeholder="" required>
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Egresado</label>
-                        <select class="form-control" name="id_egresado">
-                          <% for(var i = 0; i< data.length; i++) { %>
-                            <option value='<%= data[i].eg_id%>'><%= data[i].usu_nombre_razon_social%></option>
-                          <% } %>
-                        </select>
-                      </div>
+                <div class="form-group">
+                  <label class="form-label">Egresado</label>
+                  <select value="<%= id_egresado %>" class="form-control" name="id_egresado">
+                    <% for(var i = 0; i< data.length; i++) { %>
+                      <option value='<%= data[i].pc_id%>'><%= data[i].usu_nombre_razon_social%></option>
+                    <% } %>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="postulante">Postulante</label>
+                    <input value="<%= postulante %>" type="text" class="form-control" name="postulante" id="postulante" placeholder="" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="numero">Numero de Postulacion</label>
-                        <input type="date" class="form-control" name="numero" id="numero" placeholder="963254178" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ganador">Ganador</label>
-                        <input type="text" class="form-control" name="ganador" id="ganador" placeholder="963254178" required>
-                    </div>
-                    
+                <div class="form-group">
+                  <label for="ganador">Ganador</label>
+                  <input value="<%= ganador %>" type="text" class="form-control" name="ganador" id="ganador" placeholder="" required>
+              </div>
                     
                 </div>
                 <!-- /.card-body -->
