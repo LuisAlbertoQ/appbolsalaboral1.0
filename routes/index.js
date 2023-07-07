@@ -113,7 +113,7 @@ router.post('/usuario-add', function (req, res, next) {
     usu_usuario: usuario,
     usu_password: password
   }
-  dbConn.query('INSERT INTO usuario SET ?', form_data, function (err, result) {
+   dbConn.query('INSERT INTO usuario SET ?', form_data, function (err, result) {
     if (err) {
       req.flash('error', err)
     } else {

@@ -230,9 +230,9 @@ router.get('/empresa-add', function (req, res, next) {
 
     if (err) {
       req.flash('error', err);
-      res.render('admin/add/empresa-add', { data: '' });
+      res.render('/', { data: '' });
     } else {
-      res.render('admin/add/empresa-add', { data: rows });
+      res.render('/', { data: rows });
     }
   });
 });
