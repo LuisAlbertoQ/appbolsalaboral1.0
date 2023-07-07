@@ -56,13 +56,13 @@ router.post('/login', function (req, res, next) {
             res.redirect("/admin/egresado-add");
             break;
           case 2:
-            res.redirect("/egresado/index");
+            res.redirect("/admin/empresa-add");
             break;
           case 3:
-            res.redirect("/empresa/index");
+            res.redirect("/admin/docente-add");
             break;
           case 4:
-            res.redirect("/docente/index");
+            res.redirect("/admin/institucion-add");
             break;
           default:
             console.log("Rol desconocido");
@@ -71,6 +71,7 @@ router.post('/login', function (req, res, next) {
         }
       } else {
         res.redirect("/");
+        
       }
     }
   });
