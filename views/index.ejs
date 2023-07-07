@@ -90,29 +90,37 @@
     </div>
   </nav>
   <!-- Carrusel -->
-  <div>
-    <div id="carouselExampleCaptions" class="relative" data-te-carousel-init data-te-carousel-slide>
-    <!--Carousel items-->
-      <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-      <!--First item-->
-      <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none" data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
-        <img src="/images/publicar-oferta.webp" class="block w-full" alt="..." />
-        <div class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+  <div
+        class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+        <!--First item-->
+        <div
+          class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-active
+          data-te-carousel-item
+          style="backface-visibility: hidden">
+          <img
+            src="images/laboral.png"
+            class="block w-full"
+            alt="..." />
+          <div
+            class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+           
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Bolsa Laboral</span></h1>
+        
+
+          </div>
         </div>
-      </div>
-      </div>
-    </div>
-  </div>
+      </div>          
 
   <!-- Titulo -->
   
-<h1 class="text-center mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 ">Investiga Ofertas Laborales</span></h1>
+<h1 class="text-center mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 ">Conose a nuestros Egresados</span></h1>
   <!-- Card -->
   <div class="my-4 grid md:grid-cols-4 sm:grid-cols-2 gap-4 px-4">
     <% for(var i = 0; i< data.length; i++) { %>
       <div class=" border-2 p-4 w-full rounded-lg ml-4 shadow-xl">
         <div>
-          <img class="rounded-lg m-auto" src="images/JuanPerez.jfif" alt="">
+          <img class="rounded-lg m-auto" src="images/pepe.jpg" alt="">
         </div>
         <div>
           <!-- card que se repite teniendo en cuenta la cantidad de ofertas laborales que viene de la base de datos -->
@@ -121,13 +129,14 @@
           <p>Inicio de convocatorias: <%= data[i].ol_fecha_inicio_convocatoria%></p>
           <p>Fin de convocatorias:    <%= data[i].ol_fecha_fin%></p>
           <p>Horario de trabajo: <%= data[i].ol_horario%></p>
-          <p>Salario: S/ <%= data[i].ol_salario%></p>
+          <p>Salario:    <%= data[i].ol_salario%></p>
           <p>Empresa: <%= data[i].usu_nombre_razon_social%></p>
           <p>Descripcion: <%= data[i].ol_descripcion%></p>
           
         </div>
       </div>
-    <% } %>s
+    <% } %>
+    </div>
 <!-- Formulario de crear cuenta -->
 <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
   <div class="relative w-full max-w-md max-h-full">
