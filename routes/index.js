@@ -33,30 +33,48 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
-  email = req.body.email;
-  password = req.body.password;
+  const email = req.body.email;
+  const password = req.body.password;
   console.log(email);
   dbConn.query("SELECT * FROM usuario WHERE usu_correo='" + email + "' AND usu_password='" + password + "'", function (err, rows) {
-
     if (err) {
       req.flash('error', err);
       console.log(err);
+      res.redirect("/login");
     } else {
       console.log(rows);
       if (rows.length) {
-        nombre = rows[0]["usu_nombre_razon_social"];
-        console.log(nombre);
-        req.session.idu = rows[0]["usu_id"];
-        req.session.user = rows[0]["usu_nombre_razon_social"];
-        req.session.email = rows[0]["usu_correo"];
-        req.session.admin=true;
-        res.redirect("/admin");
+        const user = rows[0];
+        req.session.idu = user.usu_id;
+        req.session.user = user.usu_nombre_razon_social;
+        req.session.email = user.usu_correo;
+        req.session.rol = user.usu_rol;
+        req.session.admin = true;
+
+        switch (user.usu_rol) {
+          case 1:
+            res.redirect("/admin/egresado-add");
+            break;
+          case 2:
+            res.redirect("/egresado/index");
+            break;
+          case 3:
+            res.redirect("/empresa/index");
+            break;
+          case 4:
+            res.redirect("/docente/index");
+            break;
+          default:
+            console.log("Rol desconocido");
+            res.redirect("/login");
+            break;
+        }
       } else {
         res.redirect("/");
       }
-    } });
-
+    }
   });
+});
 
 
 router.get('/admin', function (req, res, next) {
@@ -69,7 +87,7 @@ router.get('/admin', function (req, res, next) {
 
 router.get('/logout',function(req,res){
     req.session.destroy();
-    res.redirect("/");
+    res.redirect("../../");
 });
 
 // Añadir usuario
